@@ -1,0 +1,42 @@
+name: 'Vaultify One'
+description: 'Fetch secrets from Vaultify One into your GitHub Actions workflow'
+author: 'Shah Sawood <shahsawoodshinwari>'
+branding:
+  icon: 'lock'
+  color: 'blue'
+inputs:
+  api_token:
+    description: 'Vaultify API token (Bearer). Create one in the Vaultify dashboard.'
+    required: true
+  category_id:
+    description: 'Optional Vaultify category ID to filter secrets'
+    required: false
+    default: ''
+  per_page:
+    description: 'Number of secrets to request per page'
+    required: false
+    default: '100'
+  export_env:
+    description: 'When true, export each secret title/value as a job environment variable'
+    required: false
+    default: 'false'
+  write_files:
+    description: |
+      Optional newline-separated mappings of secret title to output path.
+      Format: TITLE=PATH or TITLE=PATH:base64 (decode before writing).
+      Example:
+        key.properties=android/key.properties
+        release.b64=android/app/upload-keystore.jks:base64
+        play-store-service-account.json=android/play-store-service-account.json
+    required: false
+    default: ''
+outputs:
+  secrets_json:
+    description: 'JSON payload returned by the Vaultify secrets API'
+  count:
+    description: 'Number of secrets returned'
+  titles:
+    description: 'Comma-separated list of secret titles returned'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

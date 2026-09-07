@@ -1,0 +1,37 @@
+{
+  "name": "vaultify-one",
+  "version": "1.0.0",
+  "description": "GitHub Action to fetch secrets from Vaultify One",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck",
+    "test:local": "local-action run . src/index.ts .env.local"
+  },
+  "keywords": [
+    "github-actions",
+    "vaultify",
+    "secrets"
+  ],
+  "author": "Shah Sawood <shahsawoodshinwari>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahsawoodshinwari/vaultify-one.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shahsawoodshinwari/vaultify-one/issues"
+  },
+  "homepage": "https://github.com/shahsawoodshinwari/vaultify-one#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1"
+  },
+  "devDependencies": {
+    "@github/local-action": "^7.0.1",
+    "@types/node": "^22.13.10",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.8.2"
+  }
+}
